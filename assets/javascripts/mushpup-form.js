@@ -1,45 +1,42 @@
 
 var MushpupForm = (function() {
   var prepareRuler = function() {
-    var upperRuler = '>***5****0****5****0***>',
-        lowerRuler = '<***0****5****0****5***<';
+    var upperRuler = '>***5****0****5****0***>';
+    var lowerRuler = '<***0****5****0****5***<';
+    var groups = ['east', 'central', 'west'];
+    var $upperRuler = $('div.upper.ruler');
+    var $lowerRuler = $('div.lower.ruler');
 
-    jQuery.each(upperRuler.split(''), function(n, letter) {
-      var groupClass = '';
+    // Build groups of ruler characters
+    jQuery.each(groups, function(n, group) {
+      var $upperGroup = $('<span />').addClass('upper group ' + group);
+      var $lowerGroup = $('<span />').addClass('lower group ' + group);
 
-      if ( n < 8 ) {
-        groupClass = 'west';
+      for (var i=0; i < 8; i++) {
+        var index = n * 8 + i;
+        var upperChar = upperRuler[index].replace('*', '&bull;');
+        var lowerChar = lowerRuler[index].replace('*', '&bull;');
+        var $upperSpan = $('<span />').addClass('c').html(upperChar);
+        var $lowerSpan = $('<span />').addClass('c').html(lowerChar);
+        $upperGroup.append($upperSpan);
+        $lowerGroup.append($lowerSpan);
       }
-      else if ( n < 16 ) {
-        groupClass = 'central';
-      }
-      else {
-        groupClass = 'east';
-      }
 
-      var $upperSpan = $('<span />')
-        .addClass('c ruler')
-        .addClass(groupClass)
-        .html(upperRuler[n].replace('*', '&bull;'));
-      var $lowerSpan = $('<span />')
-        .addClass('c ruler')
-        .addClass(groupClass)
-        .html(lowerRuler[n].replace('*', '&bull;'));
-
-      $('div#upper-ruler').append($upperSpan);
-      $('div#lower-ruler').append($lowerSpan);
+      $upperRuler.append($upperGroup);
+      $lowerRuler.append($lowerGroup);
     });
   };
 
   var prepareButtonHandler = function() {
-    $('#mush').data('form-open', true);
+    $mushButton = $('button.mush');
+    $mushButton.data('form-open', true);
 
-    $('#mush').on('click', function() {
+    $mushButton.on('click', function() {
       // Toggle state
-      var formOpen = !!($('#mush').data('form-open'));
+      var formOpen = !!($mushButton.data('form-open'));
       var newFormState = !(formOpen);
       var setFormState = function() {
-        $('#mush').data('form-open', newFormState)
+        $mushButton.data('form-open', newFormState)
       }
 
       // Form submitted
@@ -47,18 +44,18 @@ var MushpupForm = (function() {
         var hash = generateHash();
         validateInput();
         updateHash(hash);
-        $('button#mush').text('unmush');
+        $mushButton.text('unmush');
       }
 
       // Form reset
       else {
-        $('button#mush').text('mush');
+        $mushButton.text('mush');
         updateHash('------------------------');
       }
 
       // Toggle
-      $('fieldset#locus-pocus').slideToggle('slow', setFormState);
-      $('panel#hash').slideToggle('slow', setFormState);
+      $('fieldset.locus-pocus').slideToggle('slow', setFormState);
+      $('panel.reveal').slideToggle('slow', setFormState);
       return false;
     });
   };
@@ -70,17 +67,17 @@ var MushpupForm = (function() {
   };
 
   var updateHash = function(hashCode) {
-    var $hashRow = $('div#hash-row');
+    var $hashRow = $('panel.reveal div.hash');
     $hashRow.empty();
 
     jQuery.each(hashCode.split(''), function(n, letter) {
-      var $letterSpan = $('<span />').addClass('c hash').text(letter);
+      var $letterSpan = $('<span />').addClass('c').text(letter);
       $hashRow.append($letterSpan);
     });
   };
 
   var validateInput = function() {
-    var $warnings = $('#warnings');
+    var $warnings = $('panel.reveal div.warnings');
     var site = $('input#locus').val().trim();
     var msw = $('input#pocus').val().trim();
 

@@ -1,4 +1,6 @@
-
+/*
+ * Input Form
+ */
 form.mushpup {
   max-width: 384px;
   padding: 40px 0px;
@@ -27,26 +29,22 @@ form.mushpup input[type="pocus"] {
   border-top-right-radius: 0;
 }
 
-panel#hash {
+/*
+ * Reveal Panel
+ */
+panel.reveal {
   display: none;
   margin-top: 8px;
   width: 100%;
 }
-panel#hash div#payload {
-  margin: 0 auto;
-  width: 100%;
-  background-color: #eee;
-  text-align: center;
-}
-panel#hash div#hash-row {
-  margin: 0 auto;
-  padding: 4px 0;
-  width: 100%;
-  background-color: #eee;
-  text-align: center;
-}
 
-panel#hash span.c {
+panel.reveal div.payload {
+  margin: 0 auto;
+  width: 100%;
+  background-color: #eee;
+  text-align: center;
+}
+panel.reveal div.payload span.c {
   display: inline-block;
   width: 16px;
   text-align: center;
@@ -54,11 +52,28 @@ panel#hash span.c {
   margin: 0px;
   font-family: Inconsolata,"Lucida Console",Monaco,monospace;
 }
-panel#hash span.c.hash {
-  font-size: 24px;
-}
-panel#hash div span.c.ruler {
+
+panel.reveal div.payload div.ruler {
+  background-color: #eee;
   font-size: 16px;
-  color: #333;
-  background-color: #ccc;
+}
+panel.reveal div.payload div.ruler.upper {
+  color: red;
+  border-bottom: solid red 1px;
+}
+panel.reveal div.payload div.ruler.lower {
+  color: blue;
+  border-top: solid blue 1px;
+}
+panel.reveal div.payload div.ruler span.c {}
+
+panel.reveal div.payload div.hash {
+  margin: 0 auto;
+  padding: 4px 0;
+  width: 100%;
+  background-color: white;
+  text-align: center;
+}
+panel.reveal div.payload div.hash span.c {
+  font-size: 24px;
 }
