@@ -1,0 +1,64 @@
+
+form.mushpup {
+  max-width: 384px;
+  padding: 40px 0px;
+  margin: 0 auto;
+}
+form.mushpup .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+form.mushpup .form-control:focus {
+  z-index: 2;
+}
+form.mushpup input[type="locus"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+form.mushpup input[type="pocus"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+panel#hash {
+  display: none;
+  margin-top: 8px;
+  width: 100%;
+}
+panel#hash div#payload {
+  margin: 0 auto;
+  width: 100%;
+  background-color: #eee;
+  text-align: center;
+}
+panel#hash div#hash-row {
+  margin: 0 auto;
+  padding: 4px 0;
+  width: 100%;
+  background-color: #eee;
+  text-align: center;
+}
+
+panel#hash span.c {
+  display: inline-block;
+  width: 16px;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+  font-family: Inconsolata,"Lucida Console",Monaco,monospace;
+}
+panel#hash span.c.hash {
+  font-size: 24px;
+}
+panel#hash div span.c.ruler {
+  font-size: 16px;
+  color: #333;
+  background-color: #ccc;
+}
