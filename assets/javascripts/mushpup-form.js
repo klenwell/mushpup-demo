@@ -1,5 +1,7 @@
 
 var MushpupForm = (function() {
+  var MUSH_TIMEOUT = 15;  // seconds
+
   var prepareRuler = function() {
     var upperRuler = '>***5****0****5****0***>';
     var lowerRuler = '<***0****5****0****5***<';
@@ -28,7 +30,8 @@ var MushpupForm = (function() {
   };
 
   var prepareButtonHandler = function() {
-    $mushButton = $('button.mush');
+    var $mushButton = $('button.mush');
+    var unmushTimer;
     $mushButton.data('form-open', true);
 
     $mushButton.on('click', function() {
@@ -45,10 +48,17 @@ var MushpupForm = (function() {
         validateInput();
         updateHash(hash);
         $mushButton.text('unmush');
+
+        // Unmush after given period of time
+        clearTimeout(unmushTimer);
+        unmushTimer = setTimeout(function() {
+          $mushButton.click();
+        }, MUSH_TIMEOUT * 1000);
       }
 
       // Form reset
       else {
+        clearTimeout(unmushTimer);
         $mushButton.text('mush');
         updateHash('------------------------');
       }
@@ -56,6 +66,7 @@ var MushpupForm = (function() {
       // Toggle
       $('fieldset.locus-pocus').slideToggle('slow', setFormState);
       $('panel.reveal').slideToggle('slow', setFormState);
+
       return false;
     });
   };
