@@ -54,26 +54,41 @@ panel.reveal div.payload span.c {
 }
 
 panel.reveal div.payload div.ruler {
-  background-color: #eee;
-  font-size: 16px;
+  background-color: white;
+  font-size: 14px;
 }
 panel.reveal div.payload div.ruler.upper {
   color: red;
+  border-top: solid red 1px;
   border-bottom: solid red 1px;
 }
 panel.reveal div.payload div.ruler.lower {
   color: blue;
   border-top: solid blue 1px;
+  border-bottom: solid blue 1px;
 }
 panel.reveal div.payload div.ruler span.c {}
 
 panel.reveal div.payload div.hash {
   margin: 0 auto;
-  padding: 4px 0;
+  padding: 0;
   width: 100%;
   background-color: white;
   text-align: center;
 }
+panel.reveal div.payload div.hash span.group {
+  padding: 0;
+  display: inline-block;
+}
+div.payload div.hash span.group.west, div.payload div.hash span.group.east {
+  background-color: #ddddff;
+  color: white;
+}
+div.payload div.hash span.group.central {
+  background-color: white;
+  color: #ddddff;
+}
 panel.reveal div.payload div.hash span.c {
-  font-size: 24px;
+  font-size: 20px;
+  padding: 4px 0;
 }

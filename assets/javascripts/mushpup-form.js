@@ -3,7 +3,7 @@ var MushpupForm = (function() {
   var prepareRuler = function() {
     var upperRuler = '>***5****0****5****0***>';
     var lowerRuler = '<***0****5****0****5***<';
-    var groups = ['east', 'central', 'west'];
+    var groups = ['west', 'central', 'east'];
     var $upperRuler = $('div.upper.ruler');
     var $lowerRuler = $('div.lower.ruler');
 
@@ -67,12 +67,25 @@ var MushpupForm = (function() {
   };
 
   var updateHash = function(hashCode) {
+    var groups = ['west', 'central', 'east'];
+    var hashCodeLetters = hashCode.split('');
+
+    // Empty hash row
     var $hashRow = $('panel.reveal div.hash');
     $hashRow.empty();
 
-    jQuery.each(hashCode.split(''), function(n, letter) {
-      var $letterSpan = $('<span />').addClass('c').text(letter);
-      $hashRow.append($letterSpan);
+    // Build groups of ruler characters
+    jQuery.each(groups, function(n, group) {
+      var $hashGroup = $('<span />').addClass('group ' + group);
+
+      for (var i=0; i < 8; i++) {
+        var index = n * 8 + i;
+        var letter = hashCodeLetters[index];
+        var $letterSpan = $('<span />').addClass('c').text(letter);
+        $hashGroup.append($letterSpan);
+      }
+
+      $hashRow.append($hashGroup);
     });
   };
 
