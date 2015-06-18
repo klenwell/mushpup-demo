@@ -1,6 +1,11 @@
 
 var MushpupForm = (function() {
+  // Constants
   var MUSH_TIMEOUT = 15;  // seconds
+
+  // Globals
+  var unmushTimer;
+  var $mushButton = $('button.mush');
 
   var prepareRuler = function() {
     var upperRuler = '>***5****0****5****0***>';
@@ -29,21 +34,12 @@ var MushpupForm = (function() {
     });
   };
 
-  var prepareButtonHandler = function() {
-    var $mushButton = $('button.mush');
-    var unmushTimer;
+  var prepareMushButtonHandler = function() {
     $mushButton.data('form-open', true);
 
     $mushButton.on('click', function() {
-      // Toggle state
-      var formOpen = !!($mushButton.data('form-open'));
-      var newFormState = !(formOpen);
-      var setFormState = function() {
-        $mushButton.data('form-open', newFormState)
-      }
-
-      // Form submitted
-      if ( formOpen ) {
+      // Form submitted -> mush
+      if ( formIsOpen() ) {
         var hash = generateHash();
         validateInput();
         updateHash(hash);
@@ -56,19 +52,59 @@ var MushpupForm = (function() {
         }, MUSH_TIMEOUT * 1000);
       }
 
-      // Form reset
+      // Unmush
       else {
         clearTimeout(unmushTimer);
-        $mushButton.text('mush');
-        updateHash('------------------------');
+        clearPayload();
       }
 
-      // Toggle
-      $('fieldset.locus-pocus').slideToggle('slow', setFormState);
-      $('panel.reveal').slideToggle('slow', setFormState);
-
+      toggleForm();
       return false;
     });
+  };
+
+  var prepareResetButtonHandler = function() {
+    $('span.button.reset').on('click', function() {
+      resetForm();
+    });
+  };
+
+  var toggleForm = function() {
+    $('fieldset.locus-pocus').slideToggle('slow');
+    $('panel.reveal').slideToggle('slow', swapFormState);
+  };
+
+  var showForm = function() {
+    $('fieldset.locus-pocus').slideDown('slow', function() {
+      $mushButton.data('form-open', true);
+    });
+    $('panel.reveal').slideUp('slow');
+  };
+
+  var clearForm = function() {
+    $('input#locus').val('');
+    $('input#pocus').val('');
+  };
+
+  var clearPayload = function() {
+    $mushButton.text('mush');
+    var hash = '------------------------'.replace(/-/g, '•');
+    updateHash(hash);
+  };
+
+  var resetForm = function() {
+    clearTimeout(unmushTimer);
+    clearPayload();
+    clearForm();
+    showForm();
+  };
+
+  var swapFormState = function() {
+    $mushButton.data('form-open', !(formIsOpen()));
+  };
+
+  var formIsOpen = function() {
+    return !!($mushButton.data('form-open'));
   };
 
   var generateHash = function() {
@@ -138,13 +174,8 @@ var MushpupForm = (function() {
   return {
     init: function() {
       prepareRuler();
-      prepareButtonHandler();
-      console.debug('Mushpup form init');
-    },
-
+      prepareMushButtonHandler();
+      prepareResetButtonHandler();
+    }
   };
 })();
-
-$(document).ready(function() {
-  MushpupForm.init();
-});
