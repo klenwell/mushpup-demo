@@ -1,40 +1,40 @@
-## Python Flask Skeleton for Google App Engine
+# Mushpup Demo
 
-A skeleton for building Python applications on Google App Engine with the
-[Flask micro framework](http://flask.pocoo.org).
+A simple demonstration of the [Mushpup Javascript password library](https://github.com/klenwell/mushpup)
+running on the [Flask framework](https://github.com/GoogleCloudPlatform/appengine-python-flask-skeleton)
+for Google App Engine.
 
-See our other [Google Cloud Platform github
-repos](https://github.com/GoogleCloudPlatform) for sample applications and
-scaffolding for other python frameworks and use cases.
+The site itself can be found here:
 
-## Run Locally
-1. Install the [App Engine Python SDK](https://developers.google.com/appengine/downloads).
-See the README file for directions. You'll need python 2.7 and [pip 1.4 or later](http://www.pip-installer.org/en/latest/installing.html) installed too.
+- [https://mushpup-demo.appspot.com/](https://mushpup-demo.appspot.com/)
 
-2. Clone this repo with
 
-   ```
-   git clone https://github.com/GoogleCloudPlatform/appengine-python-flask-skeleton.git
-   ```
-3. Install dependencies in the project's lib directory.
-   Note: App Engine can only import libraries from inside your project directory.
+## Install
 
-   ```
-   cd appengine-python-flask-skeleton
-   pip install -r requirements.txt -t lib
-   ```
-4. Run this project locally from the command line:
+1. Create project at https://console.developers.google.com/project
+2. Clone repository
 
-   ```
-   dev_appserver.py .
-   ```
+    cd ~/projects/mushpup-demo
+    git clone git@github.com:klenwell/mushpup-demo.git app-engine
 
-Visit the application [http://localhost:8080](http://localhost:8080)
+3. Install Python and Pip dependencies (using [pyenv](https://github.com/yyuu/pyenv))
 
-See [the development server documentation](https://developers.google.com/appengine/docs/python/tools/devserver)
-for options when running dev_appserver.
+    cd ~/projects/mushpup-demo/app-engine
+    pyenv local 2.7.7
+    ~/.pyenv/versions/2.7.7/bin/pip install -r requirements.txt -t lib
+
+## Local Server
+
+To run the local development server:
+
+    cd ~/projects/mushpup-demo/app-engine
+    dev_appserver.py --port=3000 --admin_port=3001 --api_port=3002 .
+
+Application will run on [http://localhost:3000](http://localhost:3000).
+
 
 ## Deploy
+
 To deploy the application:
 
 1. Use the [Admin Console](https://appengine.google.com) to create a
@@ -47,33 +47,7 @@ To deploy the application:
    ```
 1. Congratulations!  Your application is now live at your-app-id.appspot.com
 
-## Next Steps
-This skeleton includes `TODO` markers to help you find basic areas you will want
-to customize.
 
-### Relational Databases and Datastore
-To add persistence to your models, use
-[NDB](https://developers.google.com/appengine/docs/python/ndb/) for
-scale.  Consider
-[CloudSQL](https://developers.google.com/appengine/docs/python/cloud-sql)
-if you need a relational database.
+## Feedback
 
-### Installing Libraries
-See the [Third party
-libraries](https://developers.google.com/appengine/docs/python/tools/libraries27)
-page for libraries that are already included in the SDK.  To include SDK
-libraries, add them in your app.yaml file. Other than libraries included in
-the SDK, only pure python libraries may be added to an App Engine project.
-
-### Feedback
-Star this repo if you found it useful. Use the github issue tracker to give
-feedback on this repo.
-
-## Contributing changes
-See [CONTRIB.md](CONTRIB.md)
-
-## Licensing
-See [LICENSE](LICENSE)
-
-## Author
-Logan Henriquez and Johan Euphrosine
+Use the github issue tracker to give feedback on this repo.
