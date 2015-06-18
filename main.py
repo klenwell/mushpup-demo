@@ -1,6 +1,7 @@
 """`main` is the top level module for your Flask application."""
 # Imports
 from os.path import dirname, join
+from datetime import date
 from flask import Flask
 import jinja2
 
@@ -20,7 +21,7 @@ app = Flask(__name__)
 def index():
     """Return a friendly HTTP greeting."""
     template = JINJA_ENVIRONMENT.get_template('index.html')
-    return template.render()
+    return template.render(year=date.today().year)
 
 
 @app.route('/hello')

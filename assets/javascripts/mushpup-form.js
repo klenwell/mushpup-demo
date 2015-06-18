@@ -87,7 +87,7 @@ var MushpupForm = (function() {
     $('panel.reveal').slideUp('slow');
   };
 
-  var clearForm = function() {
+  var clearInputFields = function() {
     $('input#locus').val('');
     $('input#pocus').val('');
   };
@@ -102,7 +102,7 @@ var MushpupForm = (function() {
     clearTimeout(unmushTimer);
     clearTimeout(resetTimer);
     clearPayload();
-    clearForm();
+    clearInputFields();
     showForm();
   };
 
