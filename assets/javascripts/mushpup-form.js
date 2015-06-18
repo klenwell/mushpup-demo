@@ -2,9 +2,11 @@
 var MushpupForm = (function() {
   // Constants
   var MUSH_TIMEOUT = 15;  // seconds
+  var RESET_TIMEOUT = 60;
 
   // Globals
   var unmushTimer;
+  var resetTimer;
   var $mushButton = $('button.mush');
 
   var prepareRuler = function() {
@@ -50,12 +52,16 @@ var MushpupForm = (function() {
         unmushTimer = setTimeout(function() {
           $mushButton.click();
         }, MUSH_TIMEOUT * 1000);
+
+        // Reset form completely after given period of time
+        restartResetTimer();
       }
 
       // Unmush
       else {
         clearTimeout(unmushTimer);
         clearPayload();
+        restartResetTimer();
       }
 
       toggleForm();
@@ -94,9 +100,17 @@ var MushpupForm = (function() {
 
   var resetForm = function() {
     clearTimeout(unmushTimer);
+    clearTimeout(resetTimer);
     clearPayload();
     clearForm();
     showForm();
+  };
+
+  var restartResetTimer = function() {
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(function() {
+      resetForm();
+    }, RESET_TIMEOUT * 1000);
   };
 
   var swapFormState = function() {
