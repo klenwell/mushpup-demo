@@ -13,16 +13,16 @@ The site itself can be found here:
 
 1. Create project at https://console.developers.google.com/project
 2. Clone repository
-
-    cd ~/projects/mushpup-demo
-    git clone git@github.com:klenwell/mushpup-demo.git app-engine
-
+   ```
+   cd ~/projects/mushpup-demo
+   git clone git@github.com:klenwell/mushpup-demo.git app-engine
+   ```
 3. Install Python and Pip dependencies (using [pyenv](https://github.com/yyuu/pyenv))
-
-    cd ~/projects/mushpup-demo/app-engine
-    pyenv local 2.7.7
-    ~/.pyenv/versions/2.7.7/bin/pip install -r requirements.txt -t lib
-
+   ```
+   cd ~/projects/mushpup-demo/app-engine
+   pyenv local 2.7.7
+   ~/.pyenv/versions/2.7.7/bin/pip install -r requirements.txt -t lib
+   ```
 ## Local Server
 
 To run the local development server:
