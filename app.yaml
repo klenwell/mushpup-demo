@@ -8,7 +8,7 @@
 # id.
 application: mushpup-demo
 
-version: yruvimor
+version: dev
 
 runtime: python27
 api_version: 1
