@@ -1,0 +1,36 @@
+    <div class="container">
+      <form class="mushpup" role="form">
+        <fieldset class="locus-pocus">
+          <div class="form-group">
+            <input type="text" id="locus" class="form-control"
+              placeholder="site (e.g. yahoo.com)" autofocus>
+            <p class="hidden warn warn-site"></p>
+          </div>
+          <div class="form-group">
+            <input type="password" id="pocus" class="form-control"
+              placeholder="mushpup secret word">
+            <p class="hidden warn warn-site"></p>
+          </div>
+        </fieldset>
+        <panel class="action-bar">
+          <span class="action west">
+            <span class="circle button info">i</span>
+          </span>
+          <span class="action central">
+            <button class="btn btn-lg btn-primary btn-block mush" type="submit">mush</button>
+          </span>
+          <span class="action east">
+            <span class="circle button reset">reset</span>
+          </span>
+        </panel>
+
+        <panel class="reveal">
+          <div class="warnings"></div>
+          <div class="payload">
+            <div class="upper ruler"></div>
+            <div class="hash"></div>
+            <div class="lower ruler"></div>
+          </div>
+        </panel>
+      </form>
+    </div> <!-- /container -->
