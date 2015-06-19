@@ -8,6 +8,7 @@
 # id.
 application: mushpup-demo
 
+# default: master
 version: dev
 
 runtime: python27
