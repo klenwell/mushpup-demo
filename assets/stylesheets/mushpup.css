@@ -64,10 +64,6 @@ form.mushpup span.circle.button {
   cursor: pointer;
   color: white;
 }
-form.mushpup span.circle.button.info {
-  font-size: 20px;
-  font-weight: bold;
-}
 form.mushpup span.circle.button:hover {
   background-color: #286090;
   box-shadow: 0 0 2px #204d74;
