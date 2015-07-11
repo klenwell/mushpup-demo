@@ -75,6 +75,12 @@ var MushpupForm = (function() {
     });
   };
 
+  var prepareConfirmButtonHandler = function() {
+    $('span.button.confirm').on('click', function() {
+      toggleConfirmField();
+    });
+  };
+
   var toggleForm = function() {
     $('fieldset.locus-pocus').slideToggle('slow');
     $('panel.reveal').slideToggle('slow', swapFormState);
@@ -104,6 +110,10 @@ var MushpupForm = (function() {
     clearPayload();
     clearInputFields();
     showForm();
+  };
+
+  var toggleConfirmField = function() {
+    console.debug('toggleConfirmField');
   };
 
   var restartResetTimer = function() {
@@ -190,6 +200,7 @@ var MushpupForm = (function() {
       prepareRuler();
       prepareMushButtonHandler();
       prepareResetButtonHandler();
+      prepareConfirmButtonHandler();
     }
   };
 })();
