@@ -96,6 +96,7 @@ var MushpupForm = (function() {
   var clearInputFields = function() {
     $('input#locus').val('');
     $('input#pocus').val('');
+    $('input#pocus-confirm').val('');
   };
 
   var clearPayload = function() {
@@ -109,11 +110,18 @@ var MushpupForm = (function() {
     clearTimeout(resetTimer);
     clearPayload();
     clearInputFields();
+    rollupConfirmField();
     showForm();
   };
 
   var toggleConfirmField = function() {
-    console.debug('toggleConfirmField');
+    $('div.confirmation').slideToggle('slow');
+  };
+
+  var rollupConfirmField = function() {
+    if ( $("div.confirmation").is(":visible") ) {
+      toggleConfirmField();
+    }
   };
 
   var restartResetTimer = function() {

@@ -1,4 +1,12 @@
 /*
+ * State Rules
+ */
+.rolled-up {
+  display: none;
+}
+
+
+/*
  * Input Form
  */
 form.mushpup {
