@@ -1,4 +1,12 @@
 /*
+ * State Rules
+ */
+.rolled-up {
+  display: none;
+}
+
+
+/*
  * Input Form
  */
 form.mushpup {
@@ -63,10 +71,6 @@ form.mushpup span.circle.button {
   box-shadow: 0 0 2px #2e6da4;
   cursor: pointer;
   color: white;
-}
-form.mushpup span.circle.button.info {
-  font-size: 20px;
-  font-weight: bold;
 }
 form.mushpup span.circle.button:hover {
   background-color: #286090;
