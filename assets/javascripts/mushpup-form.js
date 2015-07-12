@@ -38,33 +38,20 @@ var MushpupForm = (function() {
 
   var prepareMushButtonHandler = function() {
     $mushButton.data('form-open', true);
-
     $mushButton.on('click', function() {
-      // Form submitted -> mush
+      var ok = false;
+
       if ( formIsOpen() ) {
-        var hash = generateHash();
-        validateInput();
-        updateHash(hash);
-        $mushButton.text('unmush');
-
-        // Unmush after given period of time
-        clearTimeout(unmushTimer);
-        unmushTimer = setTimeout(function() {
-          $mushButton.click();
-        }, MUSH_TIMEOUT * 1000);
-
-        // Reset form completely after given period of time
-        restartResetTimer();
+        ok = onMush();
       }
-
-      // Unmush
       else {
-        clearTimeout(unmushTimer);
-        clearPayload();
-        restartResetTimer();
+        ok = onUnmush();
       }
 
-      toggleForm();
+      if ( ok ) {
+        toggleForm();
+      }
+
       return false;
     });
   };
@@ -79,6 +66,45 @@ var MushpupForm = (function() {
     $('span.button.confirm').on('click', function() {
       toggleConfirmField();
     });
+  };
+
+  var onMush = function() {
+    // Validate confirm field if present
+    var confirmFieldIsPresent = $("div.confirmation").is(":visible");
+
+    if ( confirmFieldIsPresent ) {
+      var pocus = $('input#pocus').val().trim();
+      var confirmation = $('input#pocus-confirm').val().trim();
+
+      if ( pocus !== confirmation ) {
+        alert("Your mushpup secret words didn't match. Please carefully re-enter them.");
+        return false;
+      }
+    }
+
+    // Generate hash
+    var hash = generateHash();
+    validateInput();
+    updateHash(hash);
+    $mushButton.text('unmush');
+
+    // Unmush after given period of time
+    clearTimeout(unmushTimer);
+    unmushTimer = setTimeout(function() {
+      $mushButton.click();
+    }, MUSH_TIMEOUT * 1000);
+
+    // Reset form completely after given period of time
+    restartResetTimer();
+
+    return true;
+  };
+
+  var onUnmush = function() {
+    clearTimeout(unmushTimer);
+    clearPayload();
+    restartResetTimer();
+    return true;
   };
 
   var toggleForm = function() {
@@ -115,7 +141,11 @@ var MushpupForm = (function() {
   };
 
   var toggleConfirmField = function() {
-    $('div.confirmation').slideToggle('slow');
+    $('div.confirmation').slideToggle('slow', function() {
+      if ( $("div.confirmation").is(":visible") ) {
+        $('input#pocus-confirm').focus();
+      }
+    });
   };
 
   var rollupConfirmField = function() {
