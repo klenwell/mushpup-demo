@@ -117,6 +117,10 @@ var MushpupForm = (function() {
       $mushButton.data('form-open', true);
     });
     $('panel.reveal').slideUp('slow');
+
+    // Returns promise that can be used for callback when form present
+    var formIsVisible = $('fieldset.locus-pocus').promise();
+    return formIsVisible;
   };
 
   var clearInputFields = function() {
@@ -136,8 +140,12 @@ var MushpupForm = (function() {
     clearTimeout(resetTimer);
     clearPayload();
     clearInputFields();
-    rollupConfirmField();
-    showForm();
+    var formIsVisible = showForm();
+
+    $.when(formIsVisible).then(function() {
+      rollupConfirmField();
+      $('input#locus').focus();
+    });
   };
 
   var toggleConfirmField = function() {
