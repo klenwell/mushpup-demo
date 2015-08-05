@@ -9,7 +9,7 @@
 application: mushpup-demo
 
 # default: master
-version: 5j67rabj
+version: zvhl0is8
 
 runtime: python27
 api_version: 1
@@ -20,6 +20,10 @@ handlers:
 
 # App Engine serves and caches static files contained in the listed directories
 # (and subdirectories). Uncomment and set the directory as needed.
+- url: /favicon\.ico
+  static_files: assets/images/favicon.ico
+  upload: assets/images/favicon\.ico
+
 - url: /assets
   static_dir: assets
 
