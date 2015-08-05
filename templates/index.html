@@ -12,8 +12,9 @@
     <!-- Bootstrap -->
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://rawgit.com/klenwell/mushpup/master/src/mushpup-ui.css">
     <link rel="stylesheet" href="/assets/stylesheets/bootstrap.css">
-    <link rel="stylesheet" href="/assets/stylesheets/mushpup.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,7 +26,11 @@
 
   <body>
     {% include "_navbar.html" %}
-    {% include "_form.html" %}
+
+    <div class="container">
+      <div id="mushpup-ui"></div>
+    </div>
+
     {% include "_footer.html" %}
 
     <!--
@@ -39,6 +44,7 @@
 
     <!-- Mushpup -->
     <script src="https://rawgit.com/klenwell/mushpup/master/src/mushpup.js"></script>
+    <script src="https://rawgit.com/klenwell/mushpup/master/src/mushpup-ui.js"></script>
     <script src="https://rawgit.com/klenwell/mushpup/master/vendor/crypto-js/sha1.js"></script>
     <script src="https://rawgit.com/klenwell/mushpup/master/vendor/crypto-js/enc-base64-min.js"></script>
 
@@ -47,7 +53,8 @@
 
     <script>
       $(document).ready(function() {
-        MushpupForm.init();
+        ui = MushpupUI();
+        ui.init('div#mushpup-ui');
       });
     </script>
   </body>
