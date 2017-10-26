@@ -9,7 +9,7 @@
 application: mushpup-demo
 
 # default: master
-version: zvhl0is8
+version: dev
 
 runtime: python27
 api_version: 1
