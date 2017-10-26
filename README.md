@@ -23,8 +23,8 @@ The site itself can be found here:
 
    ```
    cd ~/projects/mushpup-demo/app-engine
-   pyenv local 2.7.7
-   ~/.pyenv/versions/2.7.7/bin/pip install -r requirements.txt -t lib
+   pyenv local 2.7.13
+   pip install -r requirements.txt -t lib
    ```
 
 ## Local Server
