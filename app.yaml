@@ -9,7 +9,7 @@
 application: mushpup-demo
 
 # default: production
-version: dev
+version: production
 
 runtime: python27
 api_version: 1
